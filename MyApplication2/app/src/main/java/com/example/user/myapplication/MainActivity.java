@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button)findViewById(R.id.btnLogin);
+        db = new FP_DB(this);
 
     }
 

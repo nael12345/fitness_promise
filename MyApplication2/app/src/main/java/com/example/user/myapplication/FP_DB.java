@@ -18,7 +18,7 @@ public class FP_DB extends SQLiteOpenHelper {
     // Database Version
     private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "UserDB";
+    private static final String DATABASE_NAME = "FP_DB";
 
     public FP_DB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
