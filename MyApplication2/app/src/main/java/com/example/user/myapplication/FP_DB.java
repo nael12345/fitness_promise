@@ -241,6 +241,37 @@ public class FP_DB extends SQLiteOpenHelper {
 
         Log.d("deleteUser", user.toString());
     }
+
+    // TODO: ...
+
+    private static final String TABLE_EXERCISE = "exercise";
+
+    // users Table Columns names
+    private static final String KEY_ID_EXERCISE = "id";
+    private static final String KEY_NAME_EXERCISE = "name";
+    private static final String KEY_EXERCISE_INSTRUCTIONS = "instruction";
+
+    private static final String[] EXERCISE_COLUMNS = {KEY_ID_EXERCISE, KEY_NAME_EXERCISE,KEY_EXERCISE_INSTRUCTIONS };
+
+    public void addExdercise(Exercise exercise){
+        Log.d("addExercise", exercise.toString());
+        // 1. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. create ContentValues to add key "column"/value
+        ContentValues values = new ContentValues();
+        //values.put(KEY_NAME_EXERCISE, exercise.getName()); // get title
+        //values.put(KEY_EXERCISE_INSTRUCTIONS, exercise.getExerciseInstruction()); // get title
+
+
+        // 3. insert
+        db.insert(TABLE_EXERCISE, // table
+                null, //nullColumnHack
+                values); // key/value -> keys = column names/ values = column values
+
+        // 4. close
+        db.close();
+    }
 /*
     // users table name
     private static final String TABLE_CAR = "car";
