@@ -250,8 +250,9 @@ public class FP_DB extends SQLiteOpenHelper {
     private static final String KEY_ID_EXERCISE = "id";
     private static final String KEY_NAME_EXERCISE = "name";
     private static final String KEY_EXERCISE_INSTRUCTIONS = "instruction";
+    private static final String KEY_EXERCISE_IMAGE = "image";
 
-    private static final String[] EXERCISE_COLUMNS = {KEY_ID_EXERCISE, KEY_NAME_EXERCISE,KEY_EXERCISE_INSTRUCTIONS };
+    private static final String[] EXERCISE_COLUMNS = {KEY_ID_EXERCISE, KEY_NAME_EXERCISE,KEY_EXERCISE_INSTRUCTIONS,KEY_EXERCISE_IMAGE };
 
     public void addExdercise(Exercise exercise){
         Log.d("addExercise", exercise.toString());
@@ -272,6 +273,70 @@ public class FP_DB extends SQLiteOpenHelper {
         // 4. close
         db.close();
     }
+    public int updateExercise(Exercise exercise) {
+
+        // 1. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. create ContentValues to add key "column"/value
+        ContentValues values = new ContentValues();
+        values.put("name", exercise.getName()); // get title
+        values.put("instruction", exercise.getInstructions()); // get author
+        values.put("image", exercise.getImage());
+
+        // 3. updating row
+        int i = db.update(TABLE_EXERCISE, //table
+                values, // column/value
+                KEY_ID_EXERCISE+" = ?", // selections
+                new String[] { String.valueOf(exercise.getId()) }); //selection args
+
+        // 4. close
+        db.close();
+
+        return i;
+
+    }
+    public Exercise getExercise(String name){
+
+        // 1. get reference to readable DB
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // 2. build query
+        Cursor cursor =
+                db.query(TABLE_EXERCISE, // a. table
+                        EXERCISE_COLUMNS, // b. column names
+                        " name = ?", // c. selections
+                        new String[] { String.valueOf(name) }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+
+        // 3. if we got results get the first one
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        // 4. build user object
+
+        if (cursor.getCount() > 0) {
+            Exercise exercise1 = new Exercise();
+            exercise1.setId(Integer.parseInt(cursor.getString(0)));
+            exercise1.setName(cursor.getString(1));
+            exercise1.setInstructions(cursor.getString(2));
+            exercise1.setImage(cursor.getString(3));
+            Log.d("getExercise1(" + name + ")", exercise1.toString());
+            return exercise1;
+        }
+        else {
+            Log.d("getUser(" + name + ")", "null");
+            return null;
+        }
+        // 5. return user
+    }
+
+
+
+
 /*
     // users table name
     private static final String TABLE_CAR = "car";

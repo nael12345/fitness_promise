@@ -5,5 +5,7 @@ package com.example.user.myapplication;
  */
 
 public class Workout {
+    private int id;
+    private String goal;
 
 }

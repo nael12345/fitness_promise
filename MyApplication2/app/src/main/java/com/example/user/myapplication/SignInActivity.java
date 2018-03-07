@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     private EditText etUsername;
     private EditText etPassword;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_signin);
 
         initialize ();
     }
@@ -43,13 +43,16 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            if (password.equals(user.getPassword()))
+            if (user.getUsername().equals("admin")&&user.getPassword().equals("admin"))
             {
-                Toast.makeText(this, "You have successfully logged in!", Toast.LENGTH_LONG).show();
+                // TODO: open admin page
             }
-            else
-            {
-                Toast.makeText(this, "Wrong username or password!", Toast.LENGTH_LONG).show();
+            else {
+                if (password.equals(user.getPassword())) {
+                    Toast.makeText(this, "You have successfully logged in!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "Wrong username or password!", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
