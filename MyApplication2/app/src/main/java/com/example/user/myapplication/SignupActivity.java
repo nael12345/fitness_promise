@@ -63,6 +63,7 @@ public class SignupActivity extends AppCompatActivity {
                     user.setName(name);
                     user.setUsername(username);
                     user.setPassword(password);
+                    user.setGoal(s.getSelectedItem().toString());
                     db.addUser(user);
 
                 }

@@ -11,6 +11,7 @@ public class Exercise {
     private String instructions;
     private String image;
 
+
     public Exercise() {
     }
 

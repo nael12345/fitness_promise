@@ -10,15 +10,23 @@ public class User {
     private String name;
     private String username;
     private String password;
+    private int age;
+    private int height;
+    private int weight;
+    private String goal;
 
     public User() {
     }
 
-    public User(int id, String name, String username, String password) {
+    public User(int id, String name, String username, String password, int age, int height, int weight, String goal) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+        this.goal = goal;
     }
 
     public int getId() {
@@ -53,6 +61,38 @@ public class User {
         this.password = password;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getGoal() {
+        return goal;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -60,6 +100,10 @@ public class User {
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", goal='" + goal + '\'' +
                 '}';
     }
 }
