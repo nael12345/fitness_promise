@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class SignupActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText etConPassword;
     private Button btnSignup;
     private FP_DB db;
+    private Spinner goal;
 
 
     @Override
@@ -33,6 +35,7 @@ public class SignupActivity extends AppCompatActivity {
         etConPassword = (EditText) findViewById(R.id.etConPassword);
         btnSignup = (Button) findViewById(R.id.btnSignup);
         db = new FP_DB(this);
+        goal =(Spinner) findViewById(R.id.spin);
 
     }
 
@@ -63,7 +66,7 @@ public class SignupActivity extends AppCompatActivity {
                     user.setName(name);
                     user.setUsername(username);
                     user.setPassword(password);
-                    user.setGoal(s.getSelectedItem().toString());
+                    user.setGoal(goal.getSelectedItem().toString());
                     db.addUser(user);
 
                 }
